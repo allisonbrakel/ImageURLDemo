@@ -37,13 +37,6 @@ public class CustomListView extends ArrayAdapter<String> {
         this.image = image;
     }
 
-    public void updateListView(ArrayList<String> title, ArrayList<String> image){
-        this.title = title;
-        this.image = image;
-        this.notifyDataSetChanged();
-
-    }
-
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

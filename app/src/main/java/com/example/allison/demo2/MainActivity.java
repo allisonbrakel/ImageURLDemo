@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void startTask(){
+        // Sends an OKHttp request for each url specified
+        // Displays image and name in custom list view
         String [] urls = {"https://rest.bandsintown.com/artists/neck%20deep?app_id=allison%27",
                 "https://rest.bandsintown.com/artists/waterparks?app_id=allison%27",
                 "https://rest.bandsintown.com/artists/state%20champs?app_id=allison%27",
@@ -99,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public class OkHttpHandler extends AsyncTask {
+        // Client used to send request
         OkHttpClient client = new OkHttpClient();
 
         @Override
@@ -131,7 +134,9 @@ public class MainActivity extends AppCompatActivity {
         try{
             JSONObject json = new JSONObject(response);
 
+            // Creates a new list item for each call
             ListItem i = new ListItem();
+
             i.setTitle(json.getString("name"));
             i.setImage(json.getString("image_url"));
 
@@ -145,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 imageList.add(li.getImage());
             }
 
+            // Resets the adapter after each request, so that everything is added
             customListView = new CustomListView(MainActivity.this, titleList, imageList);
             mainListView.setAdapter( customListView );
         } catch (JSONException e) {
